@@ -1,0 +1,262 @@
+<div ng-controller = "UsersController">
+
+	<div class="row" style="background-color: #b9090b; color: white; height: 200px">
+		<h1 class="text-center" >Flix and Munch</h1>
+		<div class="col-xs-6 ">
+
+				<div class="col-xs-6 col-xs-offset-6">
+					<img class="img-responsive" height="100px" src="http://assets.fontsinuse.com/static/use-media-items/19/18221/full-800x371/5670304e/Netflix_Web_Logo.png?resolution=0" />
+				</div>
+		</div>
+
+		<div class="col-xs-6">
+			<div class="col-xs-6 ">
+				<img class="img-responsive" height="100px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/1024px-Yelp_Logo.svg.png" />
+			</div>
+		</div>
+	</div>
+
+
+<div class="container">
+	<div class="row" >
+		<h4 class="text-center">Search random!
+			<button class="btn btn-primary" ng-click="searchBoth()">Search Both</button>
+			<button class="btn btn-success" ng-click="advancedMovieSearch = !advancedMovieSearch">Advanced  Search</button>
+		</h4>
+
+
+		 <div class="col-md-6">
+
+				<div class="col-md-2 col-md-offset-10">
+					<!-- open advanced search -->
+				</div>
+
+		</div>
+		<!-- <div class="col-md-6">
+			<div class="col-md-8 col-md-offset-4 "> -->
+				<!--  open advanced search-->
+				<!-- <button class="btn btn-success" ng-click="advanedFoodSearch = !advanedFoodSearch">Advanced Meal Search</button>
+			</div>
+		</div> -->
+
+	</div>
+
+<!--bottom half  -->
+	<div class="row">
+
+		<!--  begin movie search-->
+		<div class="col-md-6" ng-if="advancedMovieSearch">
+				<h1 class="text-center">Find a Movie</h1>
+				<form class="form-horizontal">
+				  <fieldset>
+
+					  <legend></legend>
+					  <div class="form-group">
+  					  <label for="select111" class="col-md-2 control-label">Genre</label>
+
+  					  <div class="col-md-10">
+  						<select id="select111" class="form-control">
+  						  <option>Action</option>
+  						  <option>Comedy</option>
+  						  <option>Horror</option>
+  						  <option>Drama</option>
+  						  <option>Documentary</option>
+  						</select>
+  					  </div>
+  					</div>
+					  <div class="form-group">
+						<label for="movieSearch" class="col-md-2 control-label">Actor</label>
+
+						<div class="col-md-10">
+						  <input type="text" class="form-control" id="movieSearch" placeholder="Name">
+						</div>
+					  </div>
+
+					  <div class="form-group">
+						<label for="Director" class="col-md-2 control-label">Director</label>
+
+						<div class="col-md-10">
+						  <input type="text" class="form-control" id="Director" placeholder="Director">
+						</div>
+					  </div>
+					<div class="form-group" style="margin-top: 0;"> <!-- inline style is just to demo custom css to put checkbox below input above -->
+					  <div class="col-md-offset-2 col-md-10">
+
+						<div class="checkbox">
+						  <label>
+							<input type="checkbox" ng-model="food.delivery"> Delivery
+						  </label>
+						  <label>
+							<input type="checkbox" disabled=""> Dine-In
+						  </label>
+						</div>
+					  </div>
+					</div>
+
+					<div class="form-group">
+					  <label class="col-md-2 control-label">Radios</label>
+
+					  <div class="col-md-10">
+						<div class="radio radio-primary">
+						  <label>
+							<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+							Option one is this
+						  </label>
+						</div>
+						<div class="radio radio-primary">
+						  <label>
+							<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+							Option two can be something else
+						  </label>
+						</div>
+					  </div>
+					</div>
+					<div class="form-group">
+					  <label for="select111" class="col-md-2 control-label">Genre</label>
+
+					  <div class="col-md-10">
+						<select id="select111" class="form-control">
+						  <option>Action</option>
+						  <option>Comedy</option>
+						  <option>Horror</option>
+						  <option>Drama</option>
+						  <option>Documentary</option>
+						</select>
+					  </div>
+					</div>
+
+					<div class="form-group">
+					  <div class="col-md-10 col-md-offset-2">
+						<button type="button" class="btn btn-default">Cancel</button>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					  </div>
+					</div>
+				  </fieldset>
+				</form>
+
+				<div class="row">
+					<div class="col-md-10">
+							<h1 class="pull-left">Food Result</h1>
+					</div>
+
+				</div>
+	</div>
+
+<!--  begin food section-->
+	<div class="col-md-6" ng-if="advancedMovieSearch">
+			<h1 class="text-center">Find some Food</h1>
+			<form class="form-horizontal" >
+			  <fieldset>
+				<legend></legend>
+				<div class="form-group">
+				  <label for="inputEmail" class="col-md-2 control-label">Name</label>
+
+				  <div class="col-md-10">
+					<input type="text" class="form-control" id="inputEmail" placeholder="Food">
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label for="inputPassword" class="col-md-2 control-label">Location</label>
+
+				  <div class="col-md-10">
+					<input type="text" class="form-control" id="inputPassword" placeholder="Location">
+					<div class="form-group" style="margin-top: 0;"> <!-- inline style is just to demo custom css to put checkbox below input above -->
+					  <div class="col-md-offset-2 col-md-10">
+
+						<div class="checkbox">
+						  <label>
+							<input type="checkbox" ng-model="food.delivery"> Delivery
+						  </label>
+						  <label>
+							<input type="checkbox" disabled=""> Dine-In
+						  </label>
+						</div>
+					  </div>
+					</div>
+					<!--
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox"> Checkbox
+					  </label>
+					  <label>
+						<input type="checkbox" disabled> Disabled Checkbox
+					  </label>
+					</div>
+					<br>
+
+					<div class="togglebutton">
+					  <label>
+						<input type="checkbox" checked> Toggle button
+					  </label>
+					</div>
+					-->
+				  </div>
+				</div>
+				<div class="form-group" style="margin-top: 0;">
+				  <div class="col-md-offset-2 col-md-10">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox"> Checkbox
+					  </label>
+					  <label>
+						<input type="checkbox" disabled=""> Disabled Checkbox
+					  </label>
+					</div>
+				  </div>
+				</div>
+
+				<div class="form-group">
+				  <label class="col-md-2 control-label">Radios</label>
+
+				  <div class="col-md-10">
+					<div class="radio radio-primary">
+					  <label>
+						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+						Option one is this
+					  </label>
+					</div>
+					<div class="radio radio-primary">
+					  <label>
+						<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+						Option two can be something else
+					  </label>
+					</div>
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label for="select111" class="col-md-2 control-label">Select</label>
+
+				  <div class="col-md-10">
+					<select id="select111" class="form-control">
+					  <option>1</option>
+					  <option>2</option>
+					  <option>3</option>
+					  <option>4</option>
+					  <option>5</option>
+					</select>
+				  </div>
+				</div>
+
+				<div class="form-group">
+				  <div class="col-md-10 col-md-offset-2">
+					<button type="button" class="btn btn-default">Cancel</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				  </div>
+				</div>
+			  </fieldset>
+			</form>
+
+
+			<div class="row">
+				<div class="col-md-12">
+						<h1 class="text-center">Food Result</h1>
+				</div>
+
+			</div>
+	</div>
+
+
+</div>
+
+
+	</div>

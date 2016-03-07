@@ -1,0 +1,22 @@
+{
+  "name": "mean_template",
+  "version": "1.0.0",
+  "description": "skeleton for a mean project",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.10.1",
+    "bootstrap": "^3.3.6",
+    "bootstrap-material-design": "^0.5.9",
+    "express": "^4.10.0",
+    "mongoose": "^4.0.1",
+    "netflix-roulette": "^1.0.2",
+    "yelp": "^1.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "bruh",
+    "start": "node server.js"
+  },
+  "author": "me",
+  "license": "ISC"
+}
