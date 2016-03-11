@@ -1,0 +1,38 @@
+*{
+    margin:0;
+    padding: 0;
+}
+
+.container {
+    padding-bottom: 20px;
+}
+
+.topImg {
+    max-height: 100px;
+vertical-align: bottom;}
+
+#banner {
+    max-height: 200px;
+}
+
+
+.foundImg{
+    width: 100px;
+    margin-top: 80px;
+}
+
+#yelpLogo{
+    margin-bottom: 20px
+}
+
+h1 {
+    color: white;
+}
+
+a {
+    font-size: 24px;
+}
+
+.movieResults{
+    vertical-align: top;
+}

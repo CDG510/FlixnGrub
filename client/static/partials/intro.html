@@ -1,35 +1,101 @@
 <div ng-controller = "UsersController">
 
-	<div class="row" style="background-color: #b9090b; color: white; height: 200px">
-		<h1 class="text-center" >Flix and Munch</h1>
-		<div class="col-xs-6 ">
-
-				<div class="col-xs-6 col-xs-offset-6">
-					<img class="img-responsive" height="100px" src="http://assets.fontsinuse.com/static/use-media-items/19/18221/full-800x371/5670304e/Netflix_Web_Logo.png?resolution=0" />
+	<div class="row" id="banner" style="background-color: #b9090b; ">
+		<h1 class="text-center" >Flix 'n' Grub</h1>
+		<div class="row">
+			<div class="col-xs-6 col-md-6 ">
+				<div class="row">
+					<div class="col-xs-6 col-xs-offset-6">
+						<img class="img-responsive topImg" id="netflixLogo" class="topImg" max-height="80px" src="http://assets.fontsinuse.com/static/use-media-items/19/18221/full-800x371/5670304e/Netflix_Web_Logo.png?resolution=0" />
+					</div>
 				</div>
-		</div>
 
-		<div class="col-xs-6">
-			<div class="col-xs-6 ">
-				<img class="img-responsive" height="100px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/1024px-Yelp_Logo.svg.png" />
+			</div>
+
+			<div class="col-xs-6 col-md-6">
+				<div class="row">
+					<div class="col-xs-6 ">
+						<img class="img-responsive topImg" id="yelpLogo" class="topImg" height="80px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/1024px-Yelp_Logo.svg.png" />
+					</div>
+				</div>
+
 			</div>
 		</div>
+
 	</div>
 
 
 <div class="container">
 	<div class="row" >
-		<h4 class="text-center">Search random!
-			<button class="btn btn-primary" ng-click="searchBoth()">Search Both</button>
-			<button class="btn btn-success" ng-click="advancedMovieSearch = !advancedMovieSearch">Advanced  Search</button>
-		</h4>
+		<h4 class="text-center" ng-if="coords">Search random!</h4>
+		<h4 class="text-center" ng-hide="coords"> Finding your location...</h4>
+		<p class="text-center" ng-hide="coords">
+			<img src="../img/477.gif" />
+		</p>
+		<p class="text-center">
+			<button class="btn btn-primary" ng-click="searchBoth()" ng-if="coords">Search Both</button>
+			<button class="btn btn-success" ng-click="advancedMovieSearch = !advancedMovieSearch" ng-show="coords">Advanced  Search</button>
+		</p>
 
 
-		 <div class="col-md-6">
+		<div class="row" ng-if="movie">
+			<div class="col-md-6">
 
-				<div class="col-md-2 col-md-offset-10">
-					<!-- open advanced search -->
+					<div class="col-md-4">
+							<img class="foundImg"  src="{{movie.poster}}" />
+							<p> Current Rating:
+								{{movie.rating}}
+							</p>
+					</div>
+					<div class="col-md-8" class="movieResults">
+						<h3 class="text-center">{{movie.show_title}}</h3>
+
+
+						<p>
+							{{movie.summary}}
+						</p>
+						<p>
+							<a ng-href="https://www.netflix.com/title/{{movie.show_id}}" class="btn btn-danger">Watch</a>
+						</p>
+					</div>
+
+			</div>
+
+			<div class=col-md-6 ng-if='food'>
+
+				<div class="col-md-4">
+
+					<img class='foundImg' src="{{foundFood.image_url}}" />
+					<p>
+					{{foundFood.rating}}	<img ng-src="{{foundFood.rating_img_url_small}}"
+					</p>
 				</div>
+
+				<div class="col-md-8 " id="foodResults" >
+					<h3 class="text-center">{{foundFood.name}}</h3>
+
+					<p>
+						{{foundFood.snippet_text}}
+					</p>
+					<div class='btn-group btn-group-justified'>
+						<a ng-href="{{foundFood.eat24_url}}" class="btn btn-danger">Order Online</a>
+
+					</div>
+					 <p class='text-center' >
+						<strong>Phone:</strong> {{foundFood.phone}}
+					 </p>
+					 <p class='text-center'>
+						<a ng-href="{{foundFood.url}}">Yelp Page</a>
+					 </p>
+					 <p class='text-center'>
+						Not down?  <button class="btn btn-info" ng-click="nextFood()">Next Result >></button></p>
+						<p ng-if="noMoreFood">You've reached the end of the results. Maybe try the advanced Search?<button class="btn btn-info" ng-click="backFood()">Previous</button>
+						</p>
+
+
+				</div>
+
+			</div>
 
 		</div>
 		<!-- <div class="col-md-6">
@@ -42,10 +108,10 @@
 	</div>
 
 <!--bottom half  -->
-	<div class="row">
+	<div class="row"  ng-if="advancedMovieSearch == true">
 
 		<!--  begin movie search-->
-		<div class="col-md-6" ng-if="advancedMovieSearch">
+		<div class="col-md-6"  >
 				<h1 class="text-center">Find a Movie</h1>
 				<form class="form-horizontal">
 				  <fieldset>
@@ -136,7 +202,9 @@
 
 				<div class="row">
 					<div class="col-md-10">
-							<h1 class="pull-left">Food Result</h1>
+							<h1 class="text-center">Movie</h1>
+							<h4 class="text-center">{{movie.show_title}}</h4>
+							<img class="img-responsive" src="{{movie.poster}}" />
 					</div>
 
 				</div>
@@ -224,7 +292,7 @@
 				  </div>
 				</div>
 				<div class="form-group">
-				  <label for="select111" class="col-md-2 control-label">Select</label>
+				  <label for="select111" class="col-md-2 control-label">Rating</label>
 
 				  <div class="col-md-10">
 					<select id="select111" class="form-control">
@@ -247,7 +315,7 @@
 			</form>
 
 
-			<div class="row">
+			<div class="row" ng-if="food">
 				<div class="col-md-12">
 						<h1 class="text-center">Food Result</h1>
 				</div>
