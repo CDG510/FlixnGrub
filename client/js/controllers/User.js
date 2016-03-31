@@ -21,12 +21,20 @@ myApp.controller('UsersController', function ($scope, $location, $routeParams, s
 					$scope.foundFood = food.businesses[0]
 			})
 			searchFactory.searchMovie({title: "food"}, function(movie){
-				$scope.movie = movie
+				$scope.movies = movie
 				console.log(movie)
+				$scope.movie = $scope.movies[0] 
 		//need to get location OR request from user in input field
 	})
 
 		};
+
+
+		$scope.scrollTo = function(id) {
+			var thisLocation = $location.hash(id);
+			var someElement = angular.element(document.getElementById(id));
+			$document.scrollToElementAnimated(someElement);
+		   }
 
 
 		// $scope.advancedMovieSearch = function() {
@@ -35,6 +43,16 @@ myApp.controller('UsersController', function ($scope, $location, $routeParams, s
 
 		$scope.nextFood = function() {
 			var current = $scope.food.indexOf($scope.foundFood)
+			if(current === $scope.food.length-2){
+				$scope.noMoreFood = true;
+				// $scope.foundFood = $scope.food[0]
+			} else {
+			$scope.foundFood = $scope.food[current+1]
+			}
+		}
+
+		$scope.nextMovie = function() {
+			var current = $scope.movie.indexOf($scope.foundFood)
 			if(current === $scope.food.length-2){
 				$scope.noMoreFood = true;
 				// $scope.foundFood = $scope.food[0]

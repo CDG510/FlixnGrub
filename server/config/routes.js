@@ -38,11 +38,11 @@ app.post('/searchMovies', function(req, res){
 //     console.log("The Boondocks' Summary = " + resp.summary);
 // });
 
-    NetflixRoulette.title("The", function(error, data){
+    NetflixRoulette.actor("james", function(error, data){
         if (error){
             console.log(err)
         } else {
-            console.log(data)
+            console.log(data, "~~~~~~~~~~~~~~~~")
             res.send(JSON.stringify(data));
         }
     });
