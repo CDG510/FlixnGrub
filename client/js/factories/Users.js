@@ -1,7 +1,20 @@
-myApp.factory('searchFactory', function ($http) {
+myApp.factory('searchFactory', function ($http, geolocation) {
 		var movies = [];
 		var Food = [];
 		var factory = {};
+		coords = {}
+
+		factory.userCoords = function(callback){
+			if (!coords.lat) {
+				geolocation.getLocation().then(function(data){
+					coords = {lat:data.coords.latitude, long:data.coords.longitude};
+					callback (coords);
+				});
+			} else {
+				callback (coords)
+			}
+
+		}
 
 		factory.searchMovie = function (query, callback){
 			console.log(query)

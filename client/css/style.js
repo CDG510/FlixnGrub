@@ -24,7 +24,8 @@ export default StyleSheet.create({
         "verticalAlign": "bottom"
     },
     "banner": {
-        "maxHeight": 200
+        "maxHeight": 200,
+        "backgroundColor": "#b9090b"
     },
     "body": {
         "backgroundColor": "black",
