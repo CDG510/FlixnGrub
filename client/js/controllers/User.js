@@ -1,4 +1,4 @@
-myApp.controller('simpleController', function ($scope, $location, searchFactory, geolocation) {
+myApp.controller('simpleController', function ($scope, $location, $state, searchFactory, geolocation) {
 
 		// $scope.Users = [];
 		$scope.noMoreFood = false
@@ -12,6 +12,9 @@ myApp.controller('simpleController', function ($scope, $location, searchFactory,
 				})
 			}
 		}();
+		$scope.advanced = function(){
+			$state.go('/advanced');
+		};
 
 
 
